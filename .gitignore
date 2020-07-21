@@ -1,0 +1,15 @@
+# Byte compiler files
+__pycache__/
+*.py[cod]
+
+# Files related to editor
+.idea/*
+
+Pipfile.lock
+
+newbie_blogs/newbie_blogs/settings/local.py
+
+# Database
+newbie_blogs/db.sqlite3
+
+venv_newbie_blogs
