@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+  {% block title %}
+    blog - home
+  {% endblock title %}
+
+  {% block extra_css %}
+    <!-- Custom styles for this template -->
+    <link href="/static/css/blog-home.css" rel="stylesheet">
+  {% endblock extra_css %}
+  
+
+  {% block content %}
+
+    </div>
+
+      <!-- Blog Entries Column -->
+      <div class="col-md-10">
+
+        {% for post in post_entries %}
+
+          <!-- Blog Post -->
+          <div class="card mb-4 mt-4">
+            <div class="card-body">
+              <h2 class="card-title">{{post.post_title}}</h2>
+              <p class="card-text">{{post.post_text | truncatechars:100}}</p>
+              {% comment %} <a href="#" class="btn btn-primary btn-sm">Read More &rarr;</a> {% endcomment %}
+            </div>
+            <div class="card-footer text-muted">
+              Posted on {{post.post_date}} by
+              <span class= "text-info mr-2">{{post.post_author}}</span>
+            </div>
+          </div>
+
+        {% endfor %}
+
+    {% if is_paginated %}
+        <!-- Pagination -->
+        <ul class="pagination justify-content-center mb-4">
+        {% if page_obj.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{page_obj.previous_page_number}}">&larr; Previous Page</a>
+          </li>
+        {% endif %}
+
+        {% if page_obj.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{page_obj.next_page_number}}">Next Page &rarr;</a>
+          </li>
+        {% endif %}
+        </ul>
+    {% endif %}
+
+      </div>
+
+
+       <!-- Sidebar Widgets Column -->
+    </div>
+
+  {% endblock %}
+    
+
+

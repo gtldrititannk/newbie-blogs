@@ -32,6 +32,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+
+    # Third party Apps
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    # Project apps
+    'authors',
+    'blogs',
 ]
 
 MIDDLEWARE = [
@@ -87,6 +97,17 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'authors.Author'
+
+AUTHENTICATION_BACKENDS = [
+
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
@@ -111,3 +132,33 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(PROJECT_ROOT, 'static'),  # Static files location in project
 ]
+
+SITE_ID = 1
+
+
+ACCOUNT_LOGOUT_ON_GET = True
+
+ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = True
+
+LOGIN_REDIRECT_URL = '/'
+
+ACCOUNT_SESSION_REMEMBER = None
+
+ACCOUNT_EMAIL_REQUIRED = True
+
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+
+ACCOUNT_UNIQUE_EMAIL = True
+
+ACCOUNT_USERNAME_REQUIRED = False
+
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+
+# ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = '/'
+
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/'
+
