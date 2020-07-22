@@ -1,29 +1,20 @@
 {% extends 'base.html' %}
 
-  {% block title %}
-    New Blog
-  {% endblock title %}
-
-  {% block extra_css %}
-
-  {% endblock extra_css %}
-
-
-  {% block content %}
+{% block content %}
 
     <div style="margin-top:100px;" class="row text-center">
       <div class="col-md-8">
 
 
             <div class="card mb-4 mt-4">
-                <div class="card-header h4 text-gray-900 mb-4 font-weight-bold text-dark""> New Blog! </div>
+                <div class="card-header h4 text-gray-900 mb-4 font-weight-bold text-dark""> Edit Blog </div>
                 <div class="card-body">
 
                     <form method="post">
                         {% csrf_token %}
                         {{form.as_p}}
 
-                        <button type="submit" class="btn btn-outline-dark btn-sm "> Add Blog </button>
+                        <button type="submit" class="btn btn-outline-dark btn-sm ">Post</button>
                     </form>
                 </div>
             </div>

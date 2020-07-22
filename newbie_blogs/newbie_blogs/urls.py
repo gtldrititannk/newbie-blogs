@@ -19,12 +19,13 @@ from django.contrib.staticfiles import views
 from django.urls import path,re_path,include
 from rest_framework.authtoken.views import obtain_auth_token
 
+
 from .views import IndexView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    path('blogs/',include('blogs.urls')),
+    path('blogs/', include('blogs.urls')),
     path('', IndexView.as_view(), name='index'),
     path('create-token/', obtain_auth_token, name='api_token_auth'),  # <-- And here
     path('blogs-api/',include('blogs_api.urls')),
@@ -34,3 +35,7 @@ if settings.DEBUG:
     urlpatterns += [
         re_path(r'^static/(?P<path>.*)$', views.serve),
     ]
+
+admin.site.site_header = 'NewBie Blogs Admin'
+admin.site.site_title = 'NewBie Blogs'
+admin.site.index_title = "Welcome to the NewBie Blogs."

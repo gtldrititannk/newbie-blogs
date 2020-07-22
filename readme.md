@@ -51,3 +51,39 @@ python manage.py migrate
 python manage.py runserver
 ```
 
+## Blog APIs Testing (postman)
+
+1:- [POST] create token using the following url:
+
+> Note: Enter username and password in body section.
+```
+ localhost:portnumber/create-token/
+```
+2:- Blog list [GET]
+ 
+> Note:  Pass Auth token in headers section for authentication. This is mandatory for each operations. 
+
+```
+ localhost:portnumber/create-token/
+```
+
+3:- Create Blog [POST]
+
+```
+ localhost:portnumber/create-token/
+```
+
+4:- Update Blog [PUT]
+
+> Note: Pass blog id in the url for retrieve and update blog.
+```
+ localhost:portnumber/create-token/(id)
+```
+
+5:- Delete Blog [DELETE]
+
+> Note: Pass blog id in the url for deleting blog.
+
+```
+ localhost:portnumber/create-token/(id)
+```
