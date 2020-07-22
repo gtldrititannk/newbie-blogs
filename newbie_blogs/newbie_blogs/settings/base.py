@@ -38,10 +38,13 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'rest_framework',
+    'rest_framework.authtoken',  # Create tokens for user
 
     # Project apps
     'authors',
     'blogs',
+    'blogs_api',
 ]
 
 MIDDLEWARE = [
@@ -133,12 +136,13 @@ STATICFILES_DIRS = [
     os.path.join(PROJECT_ROOT, 'static'),  # Static files location in project
 ]
 
-SITE_ID = 1
+# allauth Configurations
 
+SITE_ID = 1
 
 ACCOUNT_LOGOUT_ON_GET = True
 
-ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = True
+ACCOUNT_LOGOUT_ON_PASSWORD_CHAsNGE = True
 
 LOGIN_REDIRECT_URL = '/'
 
@@ -148,8 +152,6 @@ ACCOUNT_EMAIL_REQUIRED = True
 
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 
-ACCOUNT_USER_MODEL_USERNAME_FIELD = None
-
 ACCOUNT_UNIQUE_EMAIL = True
 
 ACCOUNT_USERNAME_REQUIRED = False
@@ -158,7 +160,13 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 
-# ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = '/'
-
 ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/'
 
+
+# REST_FRAMEWORK Configurations
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}
