@@ -16,14 +16,14 @@ Including another URLconf
 from django.conf import settings
 from django.contrib import admin
 from django.contrib.staticfiles import views
-from django.urls import path,re_path,include
+from django.urls import path, re_path, include
 
 from .views import IndexView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    path('blogs/',include('blogs.urls')),
+    path('blogs/', include('blogs.urls')),
     path('', IndexView.as_view(), name='index'),
 ]
 
@@ -31,3 +31,7 @@ if settings.DEBUG:
     urlpatterns += [
         re_path(r'^static/(?P<path>.*)$', views.serve),
     ]
+
+admin.site.site_header = 'NewBie Blogs Admin'
+admin.site.site_title = 'NewBie Blogs'
+admin.site.index_title = "Welcome to the NewBie Blogs."
