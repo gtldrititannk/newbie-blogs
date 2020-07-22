@@ -16,7 +16,9 @@ Including another URLconf
 from django.conf import settings
 from django.contrib import admin
 from django.contrib.staticfiles import views
-from django.urls import path, re_path, include
+from django.urls import path,re_path,include
+from rest_framework.authtoken.views import obtain_auth_token
+
 
 from .views import IndexView
 
@@ -25,6 +27,8 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('blogs/', include('blogs.urls')),
     path('', IndexView.as_view(), name='index'),
+    path('create-token/', obtain_auth_token, name='api_token_auth'),  # <-- And here
+    path('blogs-api/',include('blogs_api.urls')),
 ]
 
 if settings.DEBUG:
