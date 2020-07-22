@@ -1,10 +1,3 @@
-
-{% url 'user-dashboard' as dashboard %}
-{% url 'blog-home' as blog_home %}
-{% url 'account_login' as login %}
-{% url 'account_signup' as signup %}
-{% url 'account_logout' as logout %}
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,89 +11,46 @@
     <title>{% block title %}{% endblock title %}</title>
 
 
-{% block css %}
+    {% block css %}
 
-    <!-- Bootstrap core CSS -->
-    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">  
-    <link href="/static/css/custom.css" rel="stylesheet">  
+        <!-- Bootstrap core CSS -->
+        <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/static/css/custom.css" rel="stylesheet">
 
-{% endblock css %}
+    {% endblock css %}
 
-{% block extra_css %}
-{% endblock extra_css %}
+    {% block extra_css %}     {% endblock extra_css %}
+
 </head>
 
 <body>
 
-    <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">Micro Blog Site</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto"> 
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'index' %}">Home</a>
-              </li>
-            {% if user.is_anonymous %}
-              <li class="nav-item">
-                <a class="nav-link"  href="{% url 'account_login' %}">Log In</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link"href="{% url 'account_signup' %}" >Sign Up</a>
-              </li>
-            {% else %}
-              
-              <li class="nav-item">
-                <a class="nav-link  {% if request.path == dashboard %} active {% endif %}" href="{% url 'user-dashboard' %}">Dashboard</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link  {% if request.path == logout %} active {% endif %}" href="{% url 'account_logout' %}">Log Out</a>
-              </li>
-            {% endif %}
-          
-        </ul>
-      
-      </div>
+    <header>
+        {% include 'partials/header.html' %}
+    </header>
+
+    <div class="main_content" style="margin-bottom:100px;">
+        <div class="container">
+
+          {% block content %}
+
+          {% endblock %}
+
+        </div>
     </div>
-  </nav>
 
-<div class="main_content" style="margin-bottom:100px;">
+     <footer class="py-5 bg-dark footer">
+        {% include 'partials/footer.html' %}
+    </footer>
 
-    <div class="container">
+    {% block js %}
+        <!-- Bootstrap core JavaScript -->
+        <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/static/vendor/jquery/jquery.min.js"></script>
+    {% endblock js %}
 
-        
+    {% block extra_js %}    {% endblock extra_js %}
 
-  {% block content %}
-
-  {% endblock %}
-
-  </div>
-  <!-- /.container -->
-
-</div>
-
-<!-- Footer -->
-  <footer class="py-5 bg-dark footer">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Micro Blog  2020</p>
-    </div>
-    <!-- /.container -->
-  </footer>
-
-{% block js %}
-    
-    <!-- Bootstrap core JavaScript -->
-    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/static/vendor/jquery/jquery.min.js"></script>
-
-{% endblock js %}
-
-{% block extra_js %}
-{% endblock extra_js %}
-
-  </body>
+</body>
 
 </html>
